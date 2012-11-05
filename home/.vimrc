@@ -1,6 +1,7 @@
 " .vimrc
 " Author: Eric Kiara <eric@eric.co.ke>
 " Source: http://github.com/ekiara/dotfiles/vimrc
+"
 " NOTE:   This .vimrc works with Vim 7.3 it is not fully compatible with 7.2
 
 
