@@ -49,6 +49,22 @@ filetype indent on
 colorscheme slate
 
 
+" ================ ColorColumn ======================
+if exists("&colorcolumn")
+    set colorcolumn=80
+    highlight ColorColumn term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+    autocmd VimEnter,Colorscheme * :highlight ColorColumn term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+endif
+
+
+" ================ CursorLine =======================
+if exists("&cursorline")
+    set cursorline
+    highlight CursorLine term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+    autocmd VimEnter,Colorscheme * :highlight CursorLine term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+endif
+
+
 " ================ Backup & swap files =============
 set nobackup            " Disable backup files.
 set noswapfile          " Disable recovery swapfiles.
@@ -86,13 +102,6 @@ set foldnestmax=3
 set foldcolumn=2
 highlight FoldColumn term=standout ctermbg=0 guibg=black
 
-
-" ================ ColorColumn ======================
-if exists("&colorcolumn")
-    set colorcolumn=80
-    highlight ColorColumn term=standout ctermbg=0 guibg=black
-    autocmd VimEnter,Colorscheme * :highlight ColorColumn term=standout ctermbg=0 guibg=black
-endif
 
 
 " ================ Map leader and keybindings ======
