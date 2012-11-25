@@ -1,6 +1,6 @@
 " .vimrc
 " Author: Eric Kiara <eric@eric.co.ke>
-" Source: http://github.com/ekiara/dotfiles/vimrc
+" Source: http://github.com/ekiara/dotfiles/home/.vimrc
 "
 " NOTE:   This .vimrc works with Vim 7.3 it is not fully compatible with 7.2
 
@@ -22,12 +22,14 @@ set hidden
 
 
 " ================ Wrap & linebreak =================
-set nowrap              " Disable wrapping lines
-set linebreak           " Automatically wrap lines
+set nowrap  " Disable wrapping lines
+set linebreak  " Automatically wrap lines
+set textwidth=78  " Wrap text at column 78 automatically as you insert it.
+set nopaste
 
 
 " ================ Syntax ===========================
-syntax on
+"syntax on
 syntax enable
 
 
@@ -52,16 +54,16 @@ colorscheme slate
 " ================ ColorColumn ======================
 if exists("&colorcolumn")
     set colorcolumn=80
-    highlight ColorColumn term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
-    autocmd VimEnter,Colorscheme * :highlight ColorColumn term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+    "highlight ColorColumn term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+    "autocmd VimEnter,Colorscheme * :highlight ColorColumn term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
 endif
 
 
 " ================ CursorLine =======================
 if exists("&cursorline")
     set cursorline
-    highlight CursorLine term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
-    autocmd VimEnter,Colorscheme * :highlight CursorLine term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+    "highlight CursorLine term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
+    "autocmd VimEnter,Colorscheme * :highlight CursorLine term=standout cterm=NONE ctermbg=0 gui=NONE guibg=black guifg=NONE
 endif
 
 
@@ -78,8 +80,12 @@ set undofile
 
 
 " ================ Statusline ======================
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [LINE=%04l]\ [COL=%04v]\ [%p%%]\ [LEN=%L]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ 
-set laststatus=2        " Always show the status line.
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [LINE=%04l]\ [COL=%04v]\ [%p%%]\ [LEN=%L]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+"set statusline=%F%m%r%h%w\ [%p%%\/%LLINES]\ [LINE=%04l]\ [COL=%04v]\ [%{&ff},\ %Y,\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+"set statusline=%F%m%r%h%w\ [%p%%,\ LINE %04l\/%04L]\ [COL=%04v]\ [%{&ff},\ %Y,\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+set statusline=%F%m%r%h%w\ [%p%%,%04l\/%04L]\ [COL=%04v]\ [%{&ff},%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+
+set laststatus=2  " Always show the status line.
 
 
 " ================ Line numbers ====================
@@ -90,9 +96,9 @@ endif
 
 
 " ================ Search ===========================
-set hlsearch           " Highlight searches.
-set incsearch          " Do incremetal searches
-set ignorecase         " Case insensitive search. Ignore case when searching.
+set hlsearch  " Highlight searches.
+set incsearch  " Do incremetal searches
+set ignorecase  " Case insensitive search. Ignore case when searching.
 set smartcase
 
 
@@ -103,24 +109,49 @@ set foldcolumn=2
 highlight FoldColumn term=standout ctermbg=0 guibg=black
 
 
-
-" ================ Map leader and keybindings ======
-let mapleader = ","
-
-imap ,, <ESC>
-imap ,; <ESC>
-imap ,. <ESC>
-
-nmap ,, <ESC>
-nmap ,; <ESC>
-nmap ,. <ESC>
-
-
-
 " ================ Scrolling =======================
 set scrolloff=8
 set sidescrolloff=16
 set sidescroll=1
+
+
+" ================ Macros, functions, mapping ======
+
+" --------------------------------------------------
+"  Strip all trailing whitespace in file
+" --------------------------------------------------
+function! StripWhitespace ()
+    exec ':%s/ \+$//gc'
+endfunction
+map ,s :call StripWhitespace ()<CR>
+
+
+" TODO map automatic indenting
+"vmap <C-]> ^i    <ESC>
+"
+
+" ================ Map leader and keybindings ======
+let mapleader = ","
+
+" Quick ESCAPE
+map ,x <ESC>
+imap ,x <ESC>
+nmap ,x <ESC>
+vmap ,x <ESC>
+
+
+" ===== Map full-colon to semi-colon =============
+map ; :
+noremap ;; ;
+
+
+" ===== Quick edit .vimrc ========================
+map <leader>sv :source $MYVIMRC<CR>
+map <leader>ev :e $MYVIMRC<CR>
+
+
+" Set current working directory to the directory of the file open in the buffer.
+map <leader>cd :cd %:h<CR>:pwd<CR>
 
 
 " ================ Disable F1 key ==================
@@ -153,32 +184,3 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 
 
-" ================ Macros, functions, mapping ====
-
-
-" ---------------------------------------------------------------------------
-"  Strip all trailing whitespace in file
-" ---------------------------------------------------------------------------
-function! StripWhitespace ()
-    exec ':%s/ \+$//gc'
-endfunction
-map ,s :call StripWhitespace ()<CR>
-
-
-" TODO map automatic indenting
-"vmap <C-]> ^i    <ESC>
-"
-
-
-" ===== Map full-colon to semi-colon =============
-map ; :
-noremap ;; ;
-
-
-" ===== Quick edit .vimrc ========================
-map <leader>sv :source $MYVIMRC<CR>
-map <leader>ev :e $MYVIMRC<CR>
-
-
-" Set current working directory to the directory of the file open in the buffer.
-map <leader>cd :cd %:h<CR>:pwd<CR>

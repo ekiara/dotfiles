@@ -16,6 +16,7 @@ alias g='git'
 alias gs='git status -s'
 alias gl='git log --pretty=oneline -n 20 --graph'
 alias ga='git add'
+alias gd='git diff'
 
 
 # gzip shortcut
