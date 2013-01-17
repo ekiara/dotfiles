@@ -68,9 +68,9 @@ endif
 
 
 " ================ Backup & swap files =============
-set nobackup            " Disable backup files.
-set noswapfile          " Disable recovery swapfiles.
-set nowritebackup       " More of the same.
+set nobackup  " Disable backup files.
+set noswapfile  " Disable recovery swapfiles.
+set nowritebackup  " More of the same.
 
 
 " ================ Persistent undo =================
@@ -83,7 +83,7 @@ set undofile
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [LINE=%04l]\ [COL=%04v]\ [%p%%]\ [LEN=%L]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
 "set statusline=%F%m%r%h%w\ [%p%%\/%LLINES]\ [LINE=%04l]\ [COL=%04v]\ [%{&ff},\ %Y,\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
 "set statusline=%F%m%r%h%w\ [%p%%,\ LINE %04l\/%04L]\ [COL=%04v]\ [%{&ff},\ %Y,\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
-set statusline=%F%m%r%h%w\ [%p%%,%04l\/%04L]\ [COL=%04v]\ [%{&ff},%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+set statusline=%F%m%r%h%w\ [%p%%,%04l\/%04L]\ [COL=%04v]\ [FORMAT=%{&ff},%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
 
 set laststatus=2  " Always show the status line.
 
@@ -106,7 +106,7 @@ set smartcase
 set foldmethod=indent
 set foldnestmax=3
 set foldcolumn=2
-highlight FoldColumn term=standout ctermbg=0 guibg=black
+"highlight FoldColumn term=standout ctermbg=0 guibg=black
 
 
 " ================ Scrolling =======================
@@ -138,6 +138,19 @@ map ,x <ESC>
 imap ,x <ESC>
 nmap ,x <ESC>
 vmap ,x <ESC>
+
+map <leader>x <ESC>
+imap <leader>x <ESC>
+nmap <leader>x <ESC>
+vmap <leader>x <ESC>
+
+" Quick fold: unfold all (fo) / fold all (fc)
+map <leader>fc zM
+imap <leader>fc zM
+nmap <leader>fc zM
+map <leader>fo zR
+imap <leader>fo zR
+nmap <leader>fo zR
 
 
 " ===== Map full-colon to semi-colon =============
@@ -182,5 +195,3 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
-
-

@@ -10,6 +10,13 @@ alias lt='ls -lthF --time-style=+%Y%m%d%H%M%S'
 # bash shortcut
 alias bashf='source ~/.bash_aliases && source ~/.bashrc'
 
+# python
+alias py='python'
+
+# tmux
+alias ta='tmux attach-session -t '
+alias tl='tmux ls'
+alias tn='tmux new-session -s '
 
 # git shortcuts
 alias g='git'
@@ -18,6 +25,8 @@ alias gl='git log --pretty=oneline -n 20 --graph'
 alias ga='git add'
 alias gd='git diff'
 
+# utility
+alias wa='watch -n 1 '
 
 # gzip shortcut
 # USAGE: gz file > file.gz (save 18/20 keystrokes, 10% efficiency improvement)
