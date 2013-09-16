@@ -1,0 +1,106 @@
+" _vimrc (Windows version of my vimrc config file)
+" Author: Eric Kiara <eric@eric.co.ke>
+" Source: http://github.com/ekiara/dotfiles/home/_vimrc
+
+" ==== Windows stuff ===================
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+"behave mswin
+" ==== General =========================
+set nocompatible
+syntax enable
+set background=light
+colorscheme zellner
+set encoding=utf-8
+set showcmd
+filetype plugin indent on
+" TODO
+" NOTE: you can download this font at:
+" http://???
+set guifont=Droid_Sans_Mono_Slashed:h11
+" TODO
+set autoindent!
+" ==== Backup and Swap(~*) files =======
+set nobackup  " Disable backup files.
+set noswapfile  " Disable recovery swapfiles.
+set nowritebackup  " More of the same.
+" ==== Persistent undo =================
+set undodir=C:\Users\emk\.vim\backups
+set undofile
+" ==== Wrap ============================
+" Don't psuedo-wrap lines, automatic newline before you hit column 80
+set nowrap
+set linebreak
+set textwidth=78
+set nopaste
+" ==== ColorColumn and CursorLine ======
+if exists("&colorcolumn")
+    set colorcolumn=80
+endif
+if exists("&cursorline")
+    set cursorline
+endif
+" ==== Tabs ============================
+" Tabs and backspace
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set backspace=indent,eol,start
+" ==== Status line and line number =====
+set statusline=%F%m%r%h%w\ [%p%%,%04l\/%04L]\ [COL=%04v]\ [%{&ff},%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+highlight StatusLine term=bold,reverse ctermfg=14 ctermbg=8 guifg=#ffffff guibg=#333333
+autocmd VimEnter,Colorscheme * :highlight StatusLine term=bold,reverse ctermfg=14 ctermbg=8 guifg=#ffffff guibg=#333333
+set laststatus=2
+if exists("&relativenumber")
+    set relativenumber
+endif
+" ==== Persistent undo =================
+set foldmethod=indent
+set foldcolumn=2
+" ==== Remove gui controls =============
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+" ==== Leader key and mapping ==========
+let mapleader = ","
+" Quick ESCAPE key
+map <leader>x <ESC>
+imap <leader>x <ESC>
+nmap <leader>x <ESC>
+vmap <leader>x <ESC>
+" Quick editing and re-sourcing of vim configuration
+map <leader>sv :source $MYVIMRC<CR>
+map <leader>ev :e $MYVIMRC<CR>
+set winminwidth=3
+" In vertical split, switch to and expand right window
+map <leader>h <C-w>h<C-w><bar>
+" In vertical split, switch to and expand left window
+map <leader>l <C-w>l<C-w><bar>
+" In vertical split, set current window to full width
+map <leader>w <C-w><bar>
+" In vertical split, make windows equal width
+map <leader>q <C-w>=
+" Set current-working-dir to directory of the file you are current editing
+map <leader>cd :cd %:h<CR>:pwd<CR>
+" Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+" Make 'semi-colon' do the same thing as 'full-colon' to save a keypress
+map ; :
+noremap ;; ;
+" Never reach the window edge when scrolling up or down
+set scrolloff=4
+" Never reach the window edge when scrolling left or right
+set sidescrolloff=8
+" Magic!
+set magic
+" Vim purist: Disable F1 Key
+map <F1> <Nop>
+imap <F1> <Nop>
+" Vim purist: Disable the direction-pad, arrow keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
