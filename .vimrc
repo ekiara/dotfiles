@@ -122,7 +122,9 @@ nnoremap <Leader>c :call paste#Paste()<CR>
 
 set pastetoggle=<leader>z
 
-" Pathogen settings. Ensure that you've setup pathogen.
+" Pathogen settings. Ensure that you've setup/installed pathogen:
+" Sources:
+"https://github.com/tpope/vim-pathogen
 filetype off
 execute pathogen#infect()
 execute pathogen#helptags()
@@ -144,6 +146,11 @@ if exists("&cursorline")
     set cursorline
 endif
 
-colorscheme iceberg                 " Colorscheme, ensure that this color scheme is installed.
+" Colorscheme: iceberg, ensure that this color scheme is installed.
+" Sources:
+" http://cocopon.me/app/vim-iceberg/
+" https://github.com/cocopon/iceberg.vim/releases
+colorscheme iceberg
+
 set background=dark                 " Dark background.
 set guifont=Ubuntu\ Mono\ 12        " Fone, ensure that this font is on your machine.
